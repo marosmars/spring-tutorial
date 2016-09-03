@@ -1,0 +1,44 @@
+buildscript {
+    ext.kotlin_version = '1.0.3'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'kotlin'
+
+jar {
+    baseName = 'spring-sample'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("com.google.guava:guava:19.0")
+    compile("javax.inject:javax.inject:1")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
